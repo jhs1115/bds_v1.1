@@ -1,0 +1,2143 @@
+﻿:root {
+  --bg-top: #0c1224;
+  --bg-bottom: #1c2746;
+  --panel: rgba(12, 18, 36, 0.84);
+  --panel-strong: rgba(17, 26, 49, 0.96);
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #f6f8ff;
+  --muted: #98a7c7;
+  --accent: #ff8f70;
+  --accent-soft: #ffd2a8;
+  --mint: #7fe7c4;
+  --blue: #82b7ff;
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--text);
+  font-family: "Segoe UI", "Malgun Gothic", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(255, 188, 134, 0.16), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(138, 185, 255, 0.18), transparent 25%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+button {
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: normal;
+  transition: transform 0.15s ease, filter 0.15s ease, opacity 0.15s ease;
+}
+
+.iconBtn {
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(12, 18, 36, 0.82);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.iconBtn.small {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+#settingsOpenBtn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 30;
+  background: linear-gradient(135deg, rgba(255, 170, 108, 0.98), rgba(255, 112, 127, 0.96));
+  border: 1px solid rgba(255, 233, 203, 0.42);
+  color: #2b140d;
+  font-weight: 900;
+  box-shadow:
+    0 16px 34px rgba(255, 112, 127, 0.28),
+    0 0 0 1px rgba(255,255,255,0.18) inset;
+}
+
+#settingsPanel {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 7, 16, 0.62);
+  backdrop-filter: blur(12px);
+}
+
+#settingsCard {
+  width: min(420px, calc(100vw - 40px));
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(14, 20, 40, 0.96), rgba(8, 12, 24, 0.98));
+  box-shadow: var(--shadow);
+}
+
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.settingsHeader h3 {
+  color: #ffe0b7;
+}
+
+.settingsGroup + .settingsGroup {
+  margin-top: 14px;
+}
+
+.settingsGroup label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: #dce6ff;
+  font-size: 14px;
+}
+
+.settingsGroup input[type="range"] {
+  width: 100%;
+  accent-color: #ff9cbb;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.secondaryBtn {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.panelHeader h2 {
+  margin-top: 10px;
+  font-size: 34px;
+}
+
+.panelDesc {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+#lobbyScreen,
+#gachaScreen,
+#mapSelectScreen,
+#battleScreen {
+  min-height: 100vh;
+}
+
+#lobbyScreen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+#lobbyCanvas {
+  border: 1px solid rgba(255, 229, 195, 0.18);
+  border-radius: 28px;
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  background: linear-gradient(180deg, rgba(20, 30, 56, 0.7), rgba(8, 13, 28, 0.85));
+}
+
+#lobbyUI {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 14px;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 223, 191, 0.14);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(8, 13, 28, 0.72), rgba(17, 26, 49, 0.82));
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.26);
+}
+
+#lobbyUI span {
+  min-width: 132px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+#lobbyUI strong {
+  display: block;
+  margin-top: 4px;
+  color: #fff1d6;
+  font-size: 19px;
+}
+
+#interactHint {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 13px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 234, 202, 0.6);
+  background: linear-gradient(135deg, rgba(255, 239, 215, 0.96), rgba(255, 204, 141, 0.94));
+  color: #2e1d0f;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 18px 36px rgba(255, 177, 114, 0.28);
+  animation: pulse 1.05s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-3px); }
+}
+
+#gachaScreen,
+#mapSelectScreen,
+#bagScreen,
+#codexScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+}
+
+#gachaPanel,
+#mapSelectPanel,
+#bagPanel,
+#codexPanel {
+  width: min(820px, calc(100vw - 56px));
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+#codexPanel {
+  position: relative;
+  padding-top: 74px;
+}
+
+#gachaPanel {
+  text-align: center;
+}
+
+#gachaPanel h2 {
+  font-size: 34px;
+  color: #ffd39b;
+}
+
+#gachaPanel p {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+#gachaRollBtn,
+#bStartWaveBtn,
+#battleOverlayBackBtn,
+.mapCard {
+  background: linear-gradient(135deg, #ff9f76, #ff6d7d);
+}
+
+#gachaResult {
+  min-height: 38px;
+  margin: 12px 0 18px;
+  font-size: 18px;
+}
+
+#ultraRareEffect {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(255, 235, 184, 0.2), rgba(8, 10, 24, 0.9)),
+    linear-gradient(180deg, rgba(20, 8, 38, 0.52), rgba(5, 7, 18, 0.94));
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+  animation: ultraRareFadeIn 0.25s ease-out;
+}
+
+#ultraRareEffect.is-divine {
+  background:
+    radial-gradient(circle at center, rgba(255, 233, 187, 0.34), rgba(11, 13, 26, 0.92)),
+    linear-gradient(180deg, rgba(49, 24, 7, 0.48), rgba(6, 9, 21, 0.96));
+}
+
+#ultraRareEffect.is-ethereal {
+  background:
+    radial-gradient(circle at center, rgba(255, 72, 162, 0.16), rgba(8, 4, 18, 0.92)),
+    radial-gradient(circle at 50% 34%, rgba(167, 61, 255, 0.14), transparent 44%),
+    linear-gradient(180deg, rgba(28, 3, 12, 0.72), rgba(5, 4, 14, 0.97));
+}
+
+#ultraRareEffect.is-nova {
+  background:
+    radial-gradient(circle at center, rgba(125, 210, 255, 0.16), rgba(7, 10, 28, 0.92)),
+    radial-gradient(circle at 50% 34%, rgba(68, 128, 255, 0.18), transparent 44%),
+    linear-gradient(180deg, rgba(5, 18, 48, 0.78), rgba(4, 9, 24, 0.98));
+}
+
+#ultraRareEffect.is-leaving {
+  animation: ultraRareFadeOut 0.7s ease forwards;
+}
+
+.etherealBlackout,
+.etherealFlash,
+.etherealSparkle,
+.novaVoid,
+.novaNebula,
+.novaStarfield,
+.novaConstellation,
+.novaBladeRain,
+.novaRift,
+.novaJudgementBlade,
+.novaJudgementCore {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.etherealBlackout {
+  background: #000;
+  animation: etherealBlackout 3.1s ease-out forwards;
+}
+
+.etherealSparkle {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 173, 251, 0.98), rgba(168, 81, 255, 0.42) 22%, rgba(0, 0, 0, 0) 52%),
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.95), rgba(255,255,255,0) 12%);
+  mix-blend-mode: screen;
+}
+
+.etherealSparkle-a {
+  animation: etherealSparkleA 1.1s ease-out 2.85s forwards;
+}
+
+.etherealSparkle-b {
+  animation: etherealSparkleB 1.45s ease-out 3.5s forwards;
+}
+
+.etherealFlash {
+  background:
+    radial-gradient(circle at center, rgba(255, 141, 236, 0.95), rgba(148, 70, 255, 0.45) 28%, rgba(0, 0, 0, 0) 62%),
+    radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(255,255,255,0) 18%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: etherealFlash 1.9s cubic-bezier(0.15, 0.85, 0.22, 1) 4.1s forwards;
+}
+
+.novaVoid {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(175, 232, 255, 0.08), rgba(17, 28, 68, 0.18) 18%, rgba(0, 0, 0, 0.96) 54%),
+    linear-gradient(180deg, rgba(2, 6, 20, 0.98), rgba(3, 8, 28, 1));
+  opacity: 0;
+  animation: novaVoidOpen 4.2s ease-out forwards;
+}
+
+.novaNebula {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(196, 239, 255, 0.28), rgba(79, 156, 255, 0.16) 24%, rgba(0, 0, 0, 0) 54%),
+    radial-gradient(circle at 34% 30%, rgba(111, 214, 255, 0.22), rgba(0,0,0,0) 34%);
+  mix-blend-mode: screen;
+  animation: novaNebulaPulse 3.2s ease-out 3.3s forwards;
+}
+
+.novaNebula-b {
+  background:
+    radial-gradient(circle at 60% 46%, rgba(255,255,255,0.16), rgba(124, 177, 255, 0.12) 20%, rgba(0,0,0,0) 52%),
+    radial-gradient(circle at 72% 24%, rgba(143, 219, 255, 0.16), rgba(0,0,0,0) 30%);
+  animation-delay: 4.2s;
+}
+
+.novaStarfield {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 15% 22%, rgba(255,255,255,0.9) 0 1px, transparent 2px),
+    radial-gradient(circle at 32% 66%, rgba(181, 236, 255, 0.82) 0 1px, transparent 2px),
+    radial-gradient(circle at 68% 26%, rgba(255,255,255,0.92) 0 1px, transparent 2px),
+    radial-gradient(circle at 82% 58%, rgba(146, 213, 255, 0.86) 0 1px, transparent 2px),
+    radial-gradient(circle at 56% 74%, rgba(255,255,255,0.88) 0 1px, transparent 2px);
+  animation: novaStarfield 3.4s ease-out 3.2s forwards;
+}
+
+.novaConstellation {
+  inset: 50% auto auto 50%;
+  width: min(70vw, 760px);
+  height: min(70vw, 760px);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  filter: drop-shadow(0 0 18px rgba(143, 223, 255, 0.5));
+  animation: novaConstellationAppear 2.1s ease-out 3.95s forwards;
+}
+
+.novaNode,
+.novaLine {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.novaNode {
+  width: 18px;
+  height: 18px;
+  margin: -9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.98) 0 28%, rgba(176, 237, 255, 0.92) 48%, rgba(89, 173, 255, 0.36) 72%, rgba(0,0,0,0) 100%);
+  box-shadow:
+    0 0 18px rgba(175, 233, 255, 0.64),
+    0 0 34px rgba(101, 182, 255, 0.32);
+}
+
+.novaNode.node-a { left: 50%; top: 10%; }
+.novaNode.node-b { left: 68%; top: 28%; }
+.novaNode.node-c { left: 62%; top: 58%; }
+.novaNode.node-d { left: 50%; top: 78%; }
+.novaNode.node-e { left: 34%; top: 56%; }
+.novaNode.node-f { left: 30%; top: 26%; }
+
+.novaLine {
+  left: 50%;
+  top: 50%;
+  height: 4px;
+  border-radius: 999px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(212, 247, 255, 0.08), rgba(212, 247, 255, 0.96), rgba(114, 182, 255, 0.72));
+  box-shadow: 0 0 20px rgba(122, 203, 255, 0.34);
+}
+
+.novaLine.line-a { width: 168px; transform: translate(-4px, -235px) rotate(34deg); }
+.novaLine.line-b { width: 182px; transform: translate(136px, -126px) rotate(98deg); }
+.novaLine.line-c { width: 136px; transform: translate(118px, 98px) rotate(144deg); }
+.novaLine.line-d { width: 134px; transform: translate(0, 214px) rotate(202deg); }
+.novaLine.line-e { width: 164px; transform: translate(-128px, 90px) rotate(262deg); }
+.novaLine.line-f { width: 150px; transform: translate(-146px, -132px) rotate(322deg); }
+
+.novaRift {
+  opacity: 0;
+  background:
+    linear-gradient(90deg, transparent 46%, rgba(210, 247, 255, 0.86) 49%, rgba(112, 170, 255, 0.92) 50%, rgba(210, 247, 255, 0.86) 51%, transparent 54%);
+  mix-blend-mode: screen;
+  filter: blur(4px);
+  transform: scaleY(0.18) rotate(12deg);
+  animation: novaRiftOpen 1.6s cubic-bezier(0.18, 0.86, 0.22, 1) 4.1s forwards;
+}
+
+.novaRift-b {
+  transform: scaleY(0.16) rotate(-14deg);
+  opacity: 0;
+  animation-delay: 4.24s;
+}
+
+.novaBladeRain span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 220px;
+  margin-left: -8px;
+  margin-top: -110px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(210, 247, 255, 0.98), rgba(114, 201, 255, 0.72), rgba(255,255,255,0));
+  box-shadow: 0 0 34px rgba(125, 206, 255, 0.42);
+  opacity: 0;
+}
+
+.novaBladeRain span:nth-child(1) { transform: rotate(0deg) translateY(-330px); animation: novaBladeDrop 1.2s ease-out 4.05s forwards; }
+.novaBladeRain span:nth-child(2) { transform: rotate(60deg) translateY(-350px); animation: novaBladeDrop 1.2s ease-out 4.15s forwards; }
+.novaBladeRain span:nth-child(3) { transform: rotate(120deg) translateY(-320px); animation: novaBladeDrop 1.2s ease-out 4.25s forwards; }
+.novaBladeRain span:nth-child(4) { transform: rotate(180deg) translateY(-340px); animation: novaBladeDrop 1.2s ease-out 4.35s forwards; }
+.novaBladeRain span:nth-child(5) { transform: rotate(240deg) translateY(-325px); animation: novaBladeDrop 1.2s ease-out 4.45s forwards; }
+.novaBladeRain span:nth-child(6) { transform: rotate(300deg) translateY(-345px); animation: novaBladeDrop 1.2s ease-out 4.55s forwards; }
+
+.novaJudgementBlade {
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: min(88vh, 980px);
+  margin-left: -22px;
+  margin-top: calc(min(88vh, 980px) / -2);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0), rgba(236, 251, 255, 0.98) 14%, rgba(137, 221, 255, 0.88) 48%, rgba(92, 135, 255, 0.82) 74%, rgba(255,255,255,0));
+  box-shadow:
+    0 0 60px rgba(120, 210, 255, 0.42),
+    0 0 140px rgba(84, 124, 255, 0.24);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateY(-120px) scaleY(0.42);
+  animation: novaJudgementDescend 1.8s cubic-bezier(0.12, 0.9, 0.16, 1) 4.36s forwards;
+}
+
+.novaJudgementCore {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.96) 0 4%, rgba(194, 241, 255, 0.7) 12%, rgba(111, 165, 255, 0.42) 24%, rgba(0,0,0,0) 42%);
+  mix-blend-mode: screen;
+  animation: novaJudgementCore 1.5s ease-out 4.58s forwards;
+}
+
+.novaRevealWrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 7vh;
+}
+
+.novaNameplate {
+  width: min(620px, calc(100vw - 48px));
+  padding: 24px 28px;
+  border: 1px solid rgba(185, 233, 255, 0.18);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(7, 18, 42, 0.82), rgba(4, 8, 22, 0.92)),
+    radial-gradient(circle at top, rgba(170, 231, 255, 0.08), transparent 54%);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,0.42),
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 0 80px rgba(99, 191, 255, 0.18);
+  backdrop-filter: blur(16px);
+  animation: novaNameplateRise 1s cubic-bezier(0.18, 0.84, 0.22, 1) 4.65s both;
+}
+
+.novaAuraLabel {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(197, 240, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  color: #eaf8ff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.novaEyebrow {
+  margin-top: 14px;
+  color: #d8efff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.novaIdentityRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.novaEmoji {
+  font-size: 84px;
+  line-height: 1;
+  text-shadow:
+    0 0 24px rgba(219, 247, 255, 0.3),
+    0 0 54px rgba(113, 194, 255, 0.22);
+}
+
+.novaName {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.novaGrade {
+  margin-top: 6px;
+  color: #cfe5ff;
+  font-size: 13px;
+}
+
+.novaLore {
+  margin-top: 16px;
+  color: #f0f8ff;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.ultraRareBackdrop,
+.ultraRareShockwave,
+.ultraRareHalo,
+.ultraRareBurst {
+  position: absolute;
+  inset: 0;
+}
+
+.ultraRareBackdrop {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.18), transparent 20%),
+    radial-gradient(circle at 50% 42%, rgba(255, 209, 132, 0.2), transparent 34%);
+  opacity: 0.88;
+}
+
+#ultraRareEffect.is-ethereal .ultraRareBackdrop {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.08), transparent 14%),
+    radial-gradient(circle at 50% 42%, rgba(255, 70, 170, 0.22), transparent 28%),
+    radial-gradient(circle at 50% 42%, rgba(132, 60, 255, 0.18), transparent 42%);
+  animation: etherealArrival 2.1s ease-out 4s both;
+}
+
+#ultraRareEffect.is-nova .ultraRareBackdrop {
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.12), transparent 12%),
+    radial-gradient(circle at 50% 42%, rgba(122, 202, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 50% 42%, rgba(84, 122, 255, 0.14), transparent 44%);
+  animation: etherealArrival 2s ease-out 4s both;
+}
+
+.ultraRareShockwave {
+  inset: 50% auto auto 50%;
+  width: min(92vw, 1100px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.16);
+  transform: translate(-50%, -50%);
+  animation: ultraRarePulseRing 1.8s ease-out infinite;
+}
+
+.ultraRareShockwave.shockwave-b {
+  width: min(72vw, 880px);
+  animation-delay: 0.24s;
+}
+
+.ultraRareHalo {
+  inset: 50% auto auto 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.ultraRareHalo.halo-outer {
+  width: min(84vw, 980px);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0) 44%, rgba(255,234,192,0.2) 58%, rgba(255,255,255,0) 69%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,248,208,0.9), rgba(255,255,255,0), rgba(255,214,132,0.72), rgba(255,255,255,0));
+  filter: blur(8px);
+  animation: ultraRareSpin 4s linear infinite;
+}
+
+.ultraRareHalo.halo-inner {
+  width: min(50vw, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.95) 0 8%, rgba(255,223,178,0.55) 18%, rgba(255,255,255,0) 58%),
+    conic-gradient(from 90deg, rgba(255,255,255,0), rgba(255,242,187,0.9), rgba(255,255,255,0), rgba(255,210,128,0.8), rgba(255,255,255,0));
+  filter: blur(4px) saturate(1.2);
+  animation: ultraRareSpinReverse 2.8s linear infinite;
+}
+
+#ultraRareEffect.is-ethereal .ultraRareHalo.halo-outer {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0) 41%, rgba(255, 93, 168, 0.16) 58%, rgba(255,255,255,0) 72%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,112,216,0.95), rgba(255,255,255,0), rgba(145,84,255,0.86), rgba(255,255,255,0));
+  filter: blur(10px) saturate(1.3);
+  animation: ultraRareSpin 4s linear infinite, etherealArrival 1.8s ease-out 4s both;
+}
+
+#ultraRareEffect.is-nova .ultraRareHalo.halo-outer {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0) 41%, rgba(126, 211, 255, 0.16) 58%, rgba(255,255,255,0) 72%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(182,239,255,0.95), rgba(255,255,255,0), rgba(92,140,255,0.88), rgba(255,255,255,0));
+  filter: blur(10px) saturate(1.35);
+  animation: ultraRareSpin 4s linear infinite, etherealArrival 1.8s ease-out 4s both;
+}
+
+#ultraRareEffect.is-ethereal .ultraRareHalo.halo-inner {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.88) 0 5%, rgba(255, 104, 213, 0.5) 14%, rgba(76, 8, 126, 0.22) 25%, rgba(255,255,255,0) 60%),
+    conic-gradient(from 90deg, rgba(255,255,255,0), rgba(255,80,194,0.95), rgba(255,255,255,0), rgba(130,72,255,0.84), rgba(255,255,255,0));
+  animation: ultraRareSpinReverse 2.8s linear infinite, etherealArrival 1.8s ease-out 4.08s both;
+}
+
+#ultraRareEffect.is-nova .ultraRareHalo.halo-inner {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.92) 0 5%, rgba(174, 231, 255, 0.56) 14%, rgba(32, 75, 170, 0.24) 25%, rgba(255,255,255,0) 60%),
+    conic-gradient(from 90deg, rgba(255,255,255,0), rgba(200,244,255,0.95), rgba(255,255,255,0), rgba(86,138,255,0.88), rgba(255,255,255,0));
+  animation: ultraRareSpinReverse 2.8s linear infinite, etherealArrival 1.8s ease-out 4.08s both;
+}
+
+.ultraRareBurst {
+  inset: 50% auto auto 50%;
+  width: min(60vw, 760px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.95) 0 5%, rgba(255,230,186,0.58) 14%, rgba(255,191,92,0.18) 28%, rgba(255,255,255,0) 62%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,250,219,0.98), rgba(255,255,255,0), rgba(255,213,136,0.9), rgba(255,255,255,0));
+  transform: translate(-50%, -50%);
+  filter: blur(4px) saturate(1.18);
+  animation: ultraRareSpin 3s linear infinite;
+}
+
+#ultraRareEffect.is-ethereal .ultraRareBurst {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0 3%, rgba(255,98,206,0.62) 12%, rgba(112,36,203,0.28) 26%, rgba(255,255,255,0) 60%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,118,215,0.98), rgba(255,255,255,0), rgba(117,88,255,0.96), rgba(255,255,255,0));
+  filter: blur(5px) saturate(1.35);
+  animation: ultraRareSpin 3s linear infinite, etherealArrival 1.8s ease-out 4.12s both;
+}
+
+#ultraRareEffect.is-nova .ultraRareBurst {
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.92) 0 3%, rgba(150,225,255,0.66) 12%, rgba(66, 108, 255, 0.28) 26%, rgba(255,255,255,0) 60%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(202,244,255,0.98), rgba(255,255,255,0), rgba(111,156,255,0.96), rgba(255,255,255,0));
+  filter: blur(5px) saturate(1.4);
+  animation: ultraRareSpin 3s linear infinite, etherealArrival 1.8s ease-out 4.12s both;
+}
+
+.ultraRareVeins {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(110vw, 1400px);
+  height: min(110vw, 1400px);
+  transform: translate(-50%, -50%);
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(255,255,255,0.12) 50%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%),
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.08) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.08) 50%, transparent 51%);
+  opacity: 0.55;
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 0 18%, rgba(0,0,0,0) 65%);
+  animation: ultraRareVeinsPulse 1.8s ease-in-out infinite;
+}
+
+#ultraRareEffect.is-ethereal .ultraRareVeins {
+  opacity: 0.74;
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(255,116,205,0.16) 50%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(167,99,255,0.14) 50%, transparent 52%),
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.08) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(255,76,182,0.14) 50%, transparent 51%);
+}
+
+#ultraRareEffect.is-nova .ultraRareVeins {
+  opacity: 0.78;
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(146, 221, 255, 0.16) 50%, transparent 52%),
+    linear-gradient(0deg, transparent 48%, rgba(108, 166, 255, 0.15) 50%, transparent 52%),
+    linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.08) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(157, 214, 255, 0.14) 50%, transparent 51%);
+}
+
+.ultraRareRunes,
+.ultraRareShards {
+  position: absolute;
+  inset: 0;
+}
+
+.ultraRareRunes span,
+.ultraRareShards span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+}
+
+.ultraRareRunes span {
+  width: 18px;
+  height: 18px;
+  margin: -9px;
+  border: 2px solid rgba(255, 241, 210, 0.88);
+  border-radius: 5px;
+  box-shadow: 0 0 18px rgba(255, 222, 158, 0.5);
+  animation: ultraRareRuneOrbit 3s linear infinite;
+}
+
+.ultraRareRunes span:nth-child(1) { transform: rotate(0deg) translateY(-220px) rotate(0deg); animation-delay: 0s; }
+.ultraRareRunes span:nth-child(2) { transform: rotate(60deg) translateY(-220px) rotate(-60deg); animation-delay: -0.5s; }
+.ultraRareRunes span:nth-child(3) { transform: rotate(120deg) translateY(-220px) rotate(-120deg); animation-delay: -1s; }
+.ultraRareRunes span:nth-child(4) { transform: rotate(180deg) translateY(-220px) rotate(-180deg); animation-delay: -1.5s; }
+.ultraRareRunes span:nth-child(5) { transform: rotate(240deg) translateY(-220px) rotate(-240deg); animation-delay: -2s; }
+.ultraRareRunes span:nth-child(6) { transform: rotate(300deg) translateY(-220px) rotate(-300deg); animation-delay: -2.5s; }
+
+#ultraRareEffect.is-ethereal .ultraRareRunes span {
+  border-color: rgba(255, 104, 211, 0.86);
+  border-radius: 50%;
+  box-shadow: 0 0 22px rgba(255, 88, 197, 0.64);
+  animation-delay: 4.2s;
+}
+
+#ultraRareEffect.is-nova .ultraRareRunes span {
+  border-color: rgba(173, 235, 255, 0.9);
+  border-radius: 4px;
+  box-shadow: 0 0 24px rgba(121, 205, 255, 0.62);
+  animation-delay: 4.2s;
+}
+
+.ultraRareShards span {
+  width: 8px;
+  height: 160px;
+  margin-left: -4px;
+  margin-top: -80px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,247,216,0.92), rgba(255,255,255,0));
+  box-shadow: 0 0 22px rgba(255, 220, 154, 0.34);
+  animation: ultraRareShardDrift 2.2s ease-in-out infinite;
+}
+
+.ultraRareShards span:nth-child(1) { transform: rotate(0deg) translateY(-310px); animation-delay: 0s; }
+.ultraRareShards span:nth-child(2) { transform: rotate(45deg) translateY(-320px); animation-delay: -0.3s; }
+.ultraRareShards span:nth-child(3) { transform: rotate(90deg) translateY(-300px); animation-delay: -0.6s; }
+.ultraRareShards span:nth-child(4) { transform: rotate(135deg) translateY(-330px); animation-delay: -0.9s; }
+.ultraRareShards span:nth-child(5) { transform: rotate(180deg) translateY(-305px); animation-delay: -1.2s; }
+.ultraRareShards span:nth-child(6) { transform: rotate(225deg) translateY(-325px); animation-delay: -1.5s; }
+.ultraRareShards span:nth-child(7) { transform: rotate(270deg) translateY(-308px); animation-delay: -1.8s; }
+.ultraRareShards span:nth-child(8) { transform: rotate(315deg) translateY(-328px); animation-delay: -2.1s; }
+
+#ultraRareEffect.is-ethereal .ultraRareShards span {
+  width: 10px;
+  height: 200px;
+  margin-left: -5px;
+  margin-top: -100px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,118,219,0.95), rgba(113,64,255,0.74), rgba(255,255,255,0));
+  box-shadow: 0 0 30px rgba(255, 97, 198, 0.5);
+  animation-delay: 4.18s;
+}
+
+#ultraRareEffect.is-nova .ultraRareShards span {
+  width: 12px;
+  height: 220px;
+  margin-left: -6px;
+  margin-top: -110px;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(214,247,255,0.98), rgba(111,183,255,0.76), rgba(255,255,255,0));
+  box-shadow: 0 0 32px rgba(122, 203, 255, 0.54);
+  animation-delay: 4.12s;
+}
+
+.ultraRareCardWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+  animation: ultraRareRise 0.8s cubic-bezier(0.18, 0.84, 0.26, 1) both;
+}
+
+.ultraRareAuraLabel {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+  color: #fff7de;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(255, 219, 147, 0.2);
+}
+
+#ultraRareEffect.is-ethereal .ultraRareAuraLabel {
+  color: #ffe6ff;
+  box-shadow: 0 0 28px rgba(255, 90, 195, 0.28);
+  animation: etherealArrival 1.4s ease-out 4.28s both;
+}
+
+#ultraRareEffect.is-nova .ultraRareAuraLabel {
+  color: #e9f8ff;
+  box-shadow: 0 0 30px rgba(102, 195, 255, 0.32);
+  animation: etherealArrival 1.4s ease-out 4.28s both;
+}
+
+.ultraRareCard {
+  position: relative;
+  min-width: 360px;
+  padding: 34px 38px;
+  border: 2px solid rgba(255,255,255,0.36);
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(26, 20, 50, 0.94), rgba(8, 8, 21, 0.98)),
+    radial-gradient(circle at top, rgba(255,255,255,0.11), transparent 56%);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.05) inset,
+    0 0 60px rgba(255, 181, 111, 0.22);
+  text-align: center;
+  overflow: hidden;
+}
+
+.ultraRareCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 18%, rgba(255,255,255,0.12) 34%, transparent 48%),
+    radial-gradient(circle at top, rgba(255,255,255,0.1), transparent 40%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.ultraRareCrest {
+  position: absolute;
+  inset: 16px 16px auto auto;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.16), rgba(255,255,255,0) 66%),
+    conic-gradient(from 0deg, rgba(255,255,255,0), rgba(255,239,187,0.68), rgba(255,255,255,0), rgba(255,205,122,0.52), rgba(255,255,255,0));
+  filter: blur(0.2px);
+  opacity: 0.8;
+  animation: ultraRareCrestSpin 5s linear infinite;
+}
+
+.ultraRareEyebrow {
+  color: #ffe4f4;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.ultraRareEmoji {
+  margin-top: 20px;
+  font-size: 106px;
+  text-shadow:
+    0 0 22px rgba(255,255,255,0.24),
+    0 0 48px rgba(255, 214, 132, 0.28);
+  animation: ultraRareBreath 1.5s ease-in-out infinite;
+}
+
+.ultraRareName {
+  margin-top: 12px;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 24px rgba(255,255,255,0.14);
+}
+
+.ultraRareGrade,
+.ultraRareOdds {
+  margin-top: 8px;
+  color: #e8dcff;
+}
+
+.ultraRareLore {
+  margin-top: 14px;
+  color: #fff2fd;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.ultraRareOdds {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #c9bedb;
+}
+
+.ultraRareCard.is-divine {
+  background:
+    linear-gradient(180deg, rgba(57, 29, 7, 0.94), rgba(12, 10, 24, 0.98)),
+    radial-gradient(circle at top, rgba(255,244,211,0.12), transparent 56%);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 0 76px rgba(255, 191, 104, 0.34);
+}
+
+.ultraRareCard.is-ethereal {
+  background:
+    linear-gradient(180deg, rgba(34, 8, 30, 0.96), rgba(8, 7, 22, 0.99)),
+    radial-gradient(circle at top, rgba(255,105,213,0.14), transparent 56%);
+  box-shadow:
+    0 34px 96px rgba(0,0,0,0.62),
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 0 120px rgba(255, 79, 194, 0.42),
+    0 0 220px rgba(106, 54, 255, 0.16);
+  animation: etherealArrival 1.9s cubic-bezier(0.14, 0.84, 0.18, 1) 4.3s both;
+}
+
+@keyframes novaNebulaPulse {
+  0% { opacity: 0; transform: scale(0.8); }
+  45% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 0.78; transform: scale(1); }
+}
+
+@keyframes novaStarfield {
+  0% { opacity: 0; transform: scale(0.84); }
+  55% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.82; transform: scale(1); }
+}
+
+@keyframes novaConstellationAppear {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.72) rotate(-12deg); filter: blur(12px) drop-shadow(0 0 0 rgba(0,0,0,0)); }
+  54% { opacity: 1; transform: translate(-50%, -50%) scale(1.06) rotate(3deg); filter: blur(2px) drop-shadow(0 0 26px rgba(143, 223, 255, 0.72)); }
+  100% { opacity: 0.92; transform: translate(-50%, -50%) scale(1) rotate(0deg); filter: blur(0) drop-shadow(0 0 18px rgba(143, 223, 255, 0.5)); }
+}
+
+@keyframes novaBladeDrop {
+  0% { opacity: 0; filter: blur(10px) brightness(1.4); }
+  35% { opacity: 1; }
+  100% { opacity: 0.7; filter: blur(0) brightness(1); }
+}
+
+@keyframes novaVoidOpen {
+  0% { opacity: 0; transform: scale(1.12); }
+  30% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes novaRiftOpen {
+  0% { opacity: 0; transform: scaleY(0.08) rotate(12deg); filter: blur(18px); }
+  45% { opacity: 1; transform: scaleY(1.06) rotate(12deg); filter: blur(6px); }
+  100% { opacity: 0.78; transform: scaleY(0.92) rotate(12deg); filter: blur(3px); }
+}
+
+@keyframes novaJudgementDescend {
+  0% { opacity: 0; transform: translateY(-180px) scaleY(0.22); filter: blur(24px) brightness(1.6); }
+  54% { opacity: 1; transform: translateY(18px) scaleY(1.08); filter: blur(6px) brightness(1.2); }
+  100% { opacity: 0.94; transform: translateY(0) scaleY(1); filter: blur(0) brightness(1); }
+}
+
+@keyframes novaJudgementCore {
+  0% { opacity: 0; transform: scale(0.4); }
+  44% { opacity: 1; transform: scale(1.18); }
+  100% { opacity: 0.82; transform: scale(1); }
+}
+
+@keyframes novaNameplateRise {
+  0% { opacity: 0; transform: translateY(44px) scale(0.92); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.ultraRareCard.is-ethereal::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0) 52%, rgba(255, 92, 194, 0.1) 66%, rgba(255,255,255,0) 74%),
+    conic-gradient(from 180deg, rgba(255,255,255,0), rgba(255,84,193,0.22), rgba(255,255,255,0), rgba(132,90,255,0.18), rgba(255,255,255,0));
+  mix-blend-mode: screen;
+  animation: ultraRareCardAuraSpin 6s linear infinite;
+}
+
+@keyframes ultraRareFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes ultraRareFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes ultraRareSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg) scale(0.92); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1); }
+  to { transform: translate(-50%, -50%) rotate(360deg) scale(0.92); }
+}
+
+@keyframes ultraRareSpinReverse {
+  from { transform: translate(-50%, -50%) rotate(0deg) scale(0.96); }
+  50% { transform: translate(-50%, -50%) rotate(-180deg) scale(1.03); }
+  to { transform: translate(-50%, -50%) rotate(-360deg) scale(0.96); }
+}
+
+@keyframes ultraRarePulseRing {
+  0% { opacity: 0.15; transform: translate(-50%, -50%) scale(0.82); }
+  45% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.18); }
+}
+
+@keyframes ultraRareBreath {
+  0%, 100% { transform: scale(0.98); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes ultraRareVeinsPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.42; }
+  50% { transform: translate(-50%, -50%) scale(1.02); opacity: 0.78; }
+}
+
+@keyframes ultraRareRuneOrbit {
+  0% { opacity: 0.3; filter: brightness(0.8); }
+  50% { opacity: 1; filter: brightness(1.3); }
+  100% { opacity: 0.3; filter: brightness(0.8); }
+}
+
+@keyframes ultraRareShardDrift {
+  0%, 100% { opacity: 0.28; transform-origin: center 80%; }
+  50% { opacity: 1; transform-origin: center 80%; }
+}
+
+@keyframes ultraRareRise {
+  from { transform: translateY(34px) scale(0.9); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes ultraRareCrestSpin {
+  from { transform: rotate(0deg) scale(0.92); }
+  50% { transform: rotate(180deg) scale(1.04); }
+  to { transform: rotate(360deg) scale(0.92); }
+}
+
+@keyframes ultraRareCardAuraSpin {
+  from { transform: rotate(0deg) scale(0.94); }
+  50% { transform: rotate(180deg) scale(1.02); }
+  to { transform: rotate(360deg) scale(0.94); }
+}
+
+@keyframes etherealBlackout {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes etherealSparkleA {
+  0% { opacity: 0; transform: scale(0.4); }
+  28% { opacity: 1; transform: scale(0.88); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+@keyframes etherealSparkleB {
+  0% { opacity: 0; transform: scale(0.6); }
+  22% { opacity: 0.95; transform: scale(1.04); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+@keyframes etherealFlash {
+  0% { opacity: 0; transform: scale(0.6); }
+  24% { opacity: 1; transform: scale(1.14); }
+  100% { opacity: 0.4; transform: scale(1.55); }
+}
+
+@keyframes etherealArrival {
+  0% { opacity: 0; transform: translateY(30px) scale(0.72); filter: brightness(1.4); }
+  55% { opacity: 1; transform: translateY(-6px) scale(1.06); filter: brightness(1.12); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
+}
+#gachaChestList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 20px 0 16px;
+}
+
+.gachaChestBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  text-align: left;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.gachaChestBtn strong {
+  font-size: 22px;
+}
+
+.gachaChestEmoji {
+  font-size: 28px;
+}
+
+.gachaChestCost {
+  color: #ffd39b;
+  font-size: 13px;
+}
+
+.gachaChestHint {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#gachaPanel h3 {
+  margin-bottom: 12px;
+  color: var(--accent-soft);
+}
+
+#gachaCollection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+#gachaBackBtn,
+#mapBackBtn {
+  margin-top: 18px;
+  padding: 12px 18px;
+}
+
+#gachaBackBtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #dce5fb;
+}
+
+#bagBackBtn {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: 22px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 214, 170, 0.32);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 159, 118, 0.96), rgba(255, 109, 125, 0.96));
+  box-shadow: 0 18px 34px rgba(255, 109, 125, 0.24);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+}
+
+#bagBackBtn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 22px 40px rgba(255, 109, 125, 0.3);
+}
+
+#mapCardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+#bagSummary {
+  margin: 18px 0 14px;
+  color: var(--accent-soft);
+  font-weight: 700;
+}
+
+#equippedBagList {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.equippedSlot {
+  min-height: 112px;
+  padding: 12px 10px;
+  border: 1px dashed rgba(255, 210, 168, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.equippedSlot strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+.equippedSlotEmpty {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#bagCollection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+#codexCollection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.codexCard {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  transition: filter 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+}
+
+.codexCard.is-owned {
+  cursor: pointer;
+}
+
+.codexCard:not(.is-owned) {
+  filter: grayscale(0.85) brightness(0.52);
+}
+
+.codexCard.is-owned {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
+}
+
+.codexCard.is-active {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.codexCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.codexCardEmoji {
+  font-size: 34px;
+}
+
+.codexMeta {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.codexPreviewBtn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 156, 227, 0.32), rgba(140, 108, 255, 0.28));
+  border: 1px solid rgba(255, 156, 227, 0.24);
+}
+
+#codexDetail {
+  display: none !important;
+}
+
+.codexDetailCard {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 18px;
+  padding: 20px;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 42%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, 0.24),
+    0 0 38px rgba(255, 255, 255, 0.05);
+}
+
+.codexDetailVisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 46%),
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+  text-align: center;
+}
+
+.codexDetailGrade {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.codexDetailEmoji {
+  font-size: 92px;
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(255,255,255,0.16);
+}
+
+.codexDetailName {
+  font-size: 28px;
+  font-weight: 900;
+  color: #fff2dd;
+}
+
+.codexDetailOwned,
+.codexDetailStats,
+.codexDetailSubtitle,
+.codexDetailLimit {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.codexDetailInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.codexDetailTitleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.codexDetailTitle {
+  color: #ffe2b8;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.codexDetailLimit {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  white-space: nowrap;
+}
+
+.codexDetailDesc {
+  display: grid;
+  gap: 10px;
+}
+
+.codexDetailLine {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.04);
+  color: #e7efff;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+#codexTooltip {
+  position: fixed;
+  z-index: 60;
+  width: min(340px, calc(100vw - 24px));
+  padding: 16px 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.12), transparent 42%),
+    linear-gradient(180deg, rgba(18, 24, 46, 0.98), rgba(7, 10, 23, 0.98));
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.36),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+}
+
+.codexTooltipHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.codexTooltipEmoji {
+  font-size: 42px;
+  line-height: 1;
+}
+
+.codexTooltipName {
+  color: #fff2dd;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.codexTooltipGrade,
+.codexTooltipMeta,
+.codexTooltipLimit {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.codexTooltipMeta {
+  margin-top: 10px;
+}
+
+.codexTooltipLines {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.codexTooltipLine {
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  color: #e7efff;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+#codexBackBtn {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  margin-top: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 220, 190, 0.22);
+  background: linear-gradient(135deg, rgba(255, 170, 108, 0.92), rgba(255, 111, 143, 0.92));
+  color: #24120d;
+  box-shadow: 0 16px 32px rgba(255, 110, 142, 0.2);
+}
+
+.bagCard {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.bagCard.is-selected {
+  border-color: rgba(255, 210, 168, 0.6);
+  box-shadow: 0 0 0 1px rgba(255, 210, 168, 0.3) inset;
+}
+
+.bagCard.bag-grade-ethereal.is-selected {
+  border-color: rgba(255, 158, 231, 0.34);
+  box-shadow: 0 0 0 1px rgba(255, 158, 231, 0.14) inset;
+}
+
+.bagCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bagCardEmoji {
+  font-size: 28px;
+}
+
+.bagCardMeta {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.bagCard::before,
+.equippedSlot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.bag-grade-common {
+}
+
+.bag-grade-uncommon {
+  border-color: rgba(120, 183, 255, 0.18);
+  background: linear-gradient(180deg, rgba(104, 152, 227, 0.11), rgba(255, 255, 255, 0.03));
+}
+
+.bag-grade-rare {
+  border-color: rgba(120, 221, 147, 0.24);
+  background:
+    linear-gradient(180deg, rgba(82, 182, 114, 0.12), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(74, 116, 86, 0.18), rgba(255,255,255,0.02));
+  box-shadow: 0 12px 28px rgba(78, 168, 109, 0.1);
+}
+
+.bag-grade-epic {
+  border-color: rgba(255, 215, 111, 0.28);
+  background:
+    linear-gradient(180deg, rgba(181, 142, 56, 0.16), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(70, 53, 14, 0.24), rgba(255,255,255,0.03));
+  box-shadow: 0 14px 30px rgba(255, 202, 94, 0.12);
+}
+
+.bag-grade-legend {
+  border-color: rgba(182, 140, 255, 0.34);
+  background:
+    linear-gradient(180deg, rgba(118, 76, 201, 0.18), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(55, 28, 99, 0.26), rgba(255,255,255,0.03));
+  box-shadow: 0 16px 32px rgba(155, 114, 255, 0.15);
+}
+
+.bag-grade-mythic {
+  border-color: rgba(255, 94, 115, 0.34);
+  background:
+    linear-gradient(180deg, rgba(194, 61, 92, 0.17), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(89, 18, 36, 0.28), rgba(255,255,255,0.03));
+  box-shadow: 0 18px 34px rgba(255, 94, 115, 0.16);
+}
+
+.bag-grade-divine {
+  border-color: rgba(255, 183, 124, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 183, 124, 0.2), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(88, 42, 15, 0.28), rgba(255,244,214,0.05));
+  box-shadow:
+    0 18px 38px rgba(255, 170, 95, 0.18),
+    0 0 34px rgba(255, 208, 138, 0.08);
+}
+
+.bag-grade-divine::before,
+.equippedSlot.bag-grade-divine::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle at top, rgba(255, 239, 205, 0.16), transparent 46%),
+    linear-gradient(125deg, transparent 18%, rgba(255,255,255,0.08) 34%, transparent 54%);
+}
+
+.bag-grade-ethereal {
+  border-color: rgba(255, 130, 226, 0.5);
+  background:
+    linear-gradient(180deg, rgba(188, 76, 199, 0.22), rgba(255, 255, 255, 0.03)),
+    linear-gradient(135deg, rgba(53, 16, 76, 0.48), rgba(14, 9, 32, 0.22));
+  box-shadow:
+    0 22px 44px rgba(182, 75, 255, 0.22),
+    0 0 44px rgba(255, 102, 217, 0.12),
+    0 0 88px rgba(111, 74, 255, 0.08);
+}
+
+.bag-grade-ethereal::before,
+.equippedSlot.bag-grade-ethereal::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 247, 255, 0.22), transparent 20%),
+    radial-gradient(circle at 78% 0%, rgba(255, 137, 232, 0.18), transparent 34%),
+    linear-gradient(120deg, transparent 16%, rgba(255,255,255,0.1) 33%, transparent 52%),
+    conic-gradient(from 180deg, rgba(255,255,255,0), rgba(255,124,227,0.08), rgba(255,255,255,0), rgba(125,90,255,0.08), rgba(255,255,255,0));
+  mix-blend-mode: screen;
+}
+
+.bag-grade-ethereal .bagCardEmoji,
+.equippedSlot.bag-grade-ethereal .bagCardEmoji {
+  text-shadow:
+    0 0 16px rgba(255, 160, 239, 0.45),
+    0 0 34px rgba(145, 105, 255, 0.2);
+}
+
+.bag-grade-divine .bagCardEmoji,
+.equippedSlot.bag-grade-divine .bagCardEmoji {
+  text-shadow: 0 0 14px rgba(255, 210, 142, 0.36);
+}
+
+.bagToggleBtn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, rgba(130, 183, 255, 0.28), rgba(127, 231, 196, 0.24));
+  border: 1px solid rgba(130, 183, 255, 0.24);
+}
+
+.mapCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 16px 34px rgba(255, 109, 125, 0.24);
+}
+
+.mapCard strong {
+  font-size: 24px;
+}
+
+.mapCard:last-child {
+  background: linear-gradient(135deg, #ff944b, #c94622);
+}
+
+.mapBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+}
+
+#battleScreen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+#battleSkillPanel {
+  position: absolute;
+  left: calc(50% - 632px);
+  top: 236px;
+  z-index: 3;
+  width: 196px;
+  padding: 18px 16px;
+  border: 1px solid rgba(255, 137, 236, 0.34);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(30, 10, 44, 0.94), rgba(10, 7, 24, 0.96));
+  box-shadow:
+    0 22px 42px rgba(0, 0, 0, 0.28),
+    0 0 42px rgba(214, 102, 255, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+}
+
+#battleSkillPanel:disabled {
+  opacity: 0.72;
+}
+
+.skillHotkey {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffe2fd;
+  font-size: 16px;
+}
+
+.skillEyebrow {
+  color: #d8aaff;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skillName {
+  color: #fff0ff;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.skillStatus {
+  color: #cab9df;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+#battleTop,
+#previewControlRow,
+#battleControlRow,
+#bossBar,
+#battleMain,
+#towerShop {
+  width: min(1040px, calc(100vw - 40px));
+}
+
+#battleTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(12, 18, 36, 0.8);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+#battleTop span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#battleControlRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#previewControlRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#previewBackBtn {
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 178, 120, 0.96), rgba(255, 118, 145, 0.94));
+  color: #2f170e;
+  box-shadow: 0 14px 30px rgba(255, 120, 145, 0.2);
+}
+
+#speedControls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(12, 18, 36, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.speedBtn,
+#autoStartBtn,
+#bStartWaveBtn {
+  padding: 12px 18px;
+  border-radius: 16px;
+}
+
+.speedBtn {
+  min-width: 70px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #dbe7ff;
+}
+
+.speedBtn.is-active {
+  background: linear-gradient(135deg, rgba(130, 183, 255, 0.92), rgba(127, 231, 196, 0.88));
+  color: #0f203a;
+}
+
+#autoStartBtn {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#autoStartBtn.is-active {
+  background: linear-gradient(135deg, rgba(255, 211, 146, 0.96), rgba(255, 145, 115, 0.94));
+  color: #2f180e;
+}
+
+#bStartWaveBtn {
+  padding: 12px 20px;
+  box-shadow: 0 12px 26px rgba(255, 109, 125, 0.24);
+}
+
+#bossBar {
+  position: relative;
+  height: 30px;
+  border: 1px solid rgba(255, 197, 138, 0.22);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(8, 12, 24, 0.86);
+  box-shadow: var(--shadow);
+}
+
+#bossBarFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff8e6b, #ffd26d);
+  box-shadow: 0 0 28px rgba(255, 150, 102, 0.3);
+}
+
+#bossBarText {
+  position: relative;
+  z-index: 1;
+  padding-top: 6px;
+  text-align: center;
+  color: #fff6ea;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+#battleMain {
+  display: flex;
+  height: 480px;
+  max-height: 480px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--panel-strong);
+  box-shadow: var(--shadow);
+  align-items: stretch;
+}
+
+#battleCanvas {
+  display: block;
+  flex: 0 0 auto;
+  cursor: crosshair;
+  background: linear-gradient(180deg, #243f56, #162d44);
+}
+
+#unitInfo {
+  box-sizing: border-box;
+  flex: 0 0 260px;
+  width: 260px;
+  height: 100%;
+  min-width: 260px;
+  max-width: 260px;
+  padding: 18px;
+  border-left: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+}
+
+#unitInfo h3,
+#unitInfo h4 {
+  color: var(--accent-soft);
+}
+
+#unitInfo h3 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+#unitInfoContent {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #dfe6f7;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+}
+
+#upgradePanel hr {
+  margin: 4px 0 10px;
+  border: none;
+  border-top: 1px solid var(--line);
+}
+
+#upgradePanel {
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.upgradeBtn,
+#sellUnitBtn {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  margin-top: 8px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.upgradeBtn {
+  background: linear-gradient(135deg, rgba(130, 183, 255, 0.28), rgba(127, 231, 196, 0.24));
+  border: 1px solid rgba(130, 183, 255, 0.24);
+}
+
+.upgradePreview {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid rgba(133, 177, 231, 0.18);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(73, 99, 138, 0.28), rgba(39, 52, 78, 0.22));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.upgradePreviewTitle {
+  margin-bottom: 10px;
+  color: #b8d7ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.upgradePreviewGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.upgradeStatChip {
+  min-width: 92px;
+  flex: 1 1 92px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(164, 204, 255, 0.12);
+  border: 1px solid rgba(164, 204, 255, 0.14);
+}
+
+.upgradeStatLabel {
+  display: block;
+  color: #97aecf;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.upgradeStatValue {
+  display: block;
+  margin-top: 3px;
+  color: #f4f8ff;
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+#sellUnitBtn {
+  margin-top: auto;
+  background: linear-gradient(135deg, rgba(255, 183, 94, 0.9), rgba(255, 132, 93, 0.92));
+}
+
+#towerShop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 98px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(8, 13, 28, 0.8);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.shopLabel {
+  min-width: 96px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#towerList {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.towerCard,
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.towerCard {
+  min-width: 98px;
+  padding: 10px 12px;
+  text-align: center;
+  cursor: grab;
+}
+
+.towerCard:hover {
+  transform: translateY(-2px);
+}
+
+.towerEmoji {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 28px;
+}
+
+.towerCost {
+  color: #ffd39b;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+#battleOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 8, 17, 0.72);
+}
+
+#battleOverlayCard {
+  width: min(360px, calc(100vw - 48px));
+  padding: 28px 24px;
+  border: 1px solid rgba(255, 138, 112, 0.4);
+  border-radius: 28px;
+  text-align: center;
+  background: rgba(17, 26, 49, 0.96);
+  box-shadow: var(--shadow);
+}
+
+#battleOverlayTitle {
+  color: #ffb598;
+}
+
+#battleOverlayText {
+  margin: 10px 0 18px;
+  color: var(--muted);
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  text-align: left;
+}
+
+.card-emoji {
+  font-size: 24px;
+}
+
+.card-name {
+  font-weight: 800;
+}
+
+.card-grade,
+.card-stats {
+  font-size: 12px;
+}
+
+.card-stats {
+  color: var(--muted);
+}
+
